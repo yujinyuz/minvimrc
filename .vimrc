@@ -50,8 +50,10 @@ set wildignore+=*/.settings/*,   " Ignore Eclipse settings directories
 set wildignore+=*/target/*       " Ignore target directories
 
 " Statusline configuration
-set statusline=%<%f\ %m\ %r\ %y  " Show file path, modified flag, readonly flag, file type
+set statusline=[%{mode()}]\ %<%f\ %m\ %r " Show file path, modified flag, readonly flag, file type
 set statusline+=%=                " Right align following items
+set statusline+=%y                " Right align following items
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ ℓ:%l/%L        " Show current line number and total number of lines
 set statusline+=\ 𝚌:%2v/%-2{virtcol('$')-1} " Show current column number and total number of columns
 set statusline+=\ %p%%            " Show percentage of buffer
@@ -68,8 +70,6 @@ colorscheme habamax
 runtime macros/matchit.vim
 
 
-" hi! Normal guibg=NONE ctermbg=NONE
-" hi! EndOfBuffer guibg=NONE ctermbg=NONE
 
 let g:netrw_winsize = 15
 let g:netrw_banner = 0
@@ -124,3 +124,29 @@ vnoremap / /\v
 
 " Toggles
 nnoremap <silent> yow :set wrap!<CR>
+
+
+" whenever you're in parentheses, you can simple invoke dp or cp to wipe it's contents (same for brackets, but db or cb).
+onoremap b i[|
+onoremap p i(|
+
+
+" hi! Normal ctermbg=none
+" hi! NonText ctermbg=none
+" hi! Normal ctermbg=none
+" hi! VertSplit ctermbg=none
+" hi! NonText ctermbg=none
+" hi! StatusLine ctermbg=none
+" hi! StatusLine ctermfg=Grey
+" hi! StatusLineNC ctermbg=none
+" hi! StatusLineNC ctermfg=DarkGrey
+" hi! GitSignsAdd ctermfg=Green
+" hi! GitSignsChange ctermfg=Yellow
+" hi! GitSignsDelete ctermfg=Red
+" hi! TabLine ctermfg=none ctermbg=none
+" hi! TabLineFill ctermfg=DarkGrey ctermbg=none
+" hi! TabLineSel ctermfg=White ctermbg=none
+" hi! Visual ctermfg=none ctermbg=Black
+" hi! Visual guibg=#1c1c1c guifg=NONE
+" hi! Normal guibg=NONE ctermbg=NONE
+" hi! EndOfBuffer guibg=NONE ctermbg=NONE
